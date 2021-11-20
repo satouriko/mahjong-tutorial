@@ -955,6 +955,7 @@ img {
 .heading1, .heading2, .heading3, .heading4, .heading5, .heading6 {
   color: #1B2738;
   font-weight: 500;
+  padding-top: 24px;
 }
 .heading1 {
   font-size: 26px;
@@ -998,7 +999,7 @@ img {
   color: #1B2738;
   font-size: 16px;
   font-weight: 300;
-  margin-bottom: 36px;
+  padding: 8px 0;
 }
 strong {
   font-weight: 600;
@@ -1006,8 +1007,7 @@ strong {
 .pre {
   font-size: 14px;
   margin: 0px;
-  padding: 0;
-  margin-bottom: 32px;
+  padding: 8px 0;
   overflow: auto;
 }
 .pre pre {
@@ -1016,7 +1016,7 @@ strong {
   padding: 16px;
 }
 .fontBold {
-  margin-bottom: 32px;
+  padding: 8px 0;
   clear: both;
   width: 100%;
   float: left;
