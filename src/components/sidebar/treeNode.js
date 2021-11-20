@@ -32,7 +32,8 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items }
   if (!!location) {
     const pathPrefixedUrl = config.gatsby.pathPrefix + url;
     const pathMatchesUrl = location.pathname === url || location.pathname === pathPrefixedUrl;
-    const pathStartsWithUrl = location.pathname?.startsWith(url) || location.pathname?.startsWith(pathPrefixedUrl);
+    const pathStartsWithUrl = url !== '' && url !== '/' && (
+      location.pathname?.startsWith(url) || location.pathname?.startsWith(pathPrefixedUrl));
     active = pathMatchesUrl || pathStartsWithUrl;
   }
 

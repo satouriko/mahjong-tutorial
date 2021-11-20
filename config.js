@@ -1,15 +1,15 @@
 const config = {
 	"gatsby": {
 		"pathPrefix": "/",
-		"siteUrl": "https://learn.hasura.io",
+		"siteUrl": "https://mahjong.innocent.love",
 		"gaTrackingId": null,
 		"trailingSlash": false
 	},
 	"header": {
-		"logo": "https://graphql-engine-cdn.hasura.io/learn-hasura/assets/homepage/favicon.png",
-		"logoLink": "https://learn.hasura.io",
-		"title": "Gatsby Gitbook Boilerplate",
-		"githubUrl": "https://github.com/hasura/gatsby-gitbook-boilerplate",
+		"logo": "https://img.itch.zone/aW1nLzE4NTM1NTQucG5n/32x32%23/90uG22.png",
+		"logoLink": "https://mahjong.innocent.love",
+		"title": "八重梨子",
+		"githubUrl": "https://github.com/satouriko/mahjong-tutorial",
 		"helpUrl": "",
 		"tweetText": "",
 		"links": [
@@ -26,23 +26,19 @@ const config = {
 	"sidebar": {
 		"forcedNavOrder": [
 			"/introduction", // add trailing slash if enabled above
-    		"/codeblock"
+      "/codeblock"
 		],
-    	"collapsedNav": [
-      		"/codeblock" // add trailing slash if enabled above
-    	],
 		"links": [
-			{ "text": "Hasura", "link": "https://hasura.io"},
 		],
 		"frontline": false,
 		"ignoreIndex": true,
 	},
 	"siteMetadata": {
-		"title": "Gatsby Gitbook Boilerplate | Hasura",
-		"description": "Documentation built with mdx. Powering learn.hasura.io ",
+		"title": "梨子的麻雀生态研究笔记",
+		"description": "Documentation built with mdx.",
 		"ogImage": null,
-		"docsLocation": "https://github.com/hasura/gatsby-gitbook-boilerplate/tree/master/content",
-		"favicon": "https://graphql-engine-cdn.hasura.io/img/hasura_icon_black.svg"
+		"docsLocation": "https://github.com/satouriko/mahjong-tutorial",
+		"favicon": "https://img.itch.zone/aW1nLzE4NTM1NTQucG5n/32x32%23/90uG22.png"
 	},
 	"pwa": {
 		"enabled": false, // disabling this will also remove the existing service worker.
@@ -62,26 +58,7 @@ const config = {
 				},
 			],
 		},
-	},
-	"language": {
-		"code": "en",
-		"name": "English",
-		"translations": [
-			{
-				"code": "ja",
-				"name": "Japanese",
-				"link": "https://hasura.io/learn/ja/graphql/hasura/introduction"
-			},
-			{
-				"code": "zh",
-				"name": "Chinese",
-				"link": "https://hasura.io/learn/zh/graphql/hasura/introduction"
-			},
-		]
-	},
-	"newsletter": {
-    "pdfCopyFormId": "1244"
-  },
+	}
 };
 
 module.exports = config;

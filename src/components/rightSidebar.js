@@ -132,14 +132,6 @@ const SidebarLayout = ({ location }) => (
               <li className="rightSideTitle">CONTENTS</li>
               {finalNavItems}
             </ul>
-            <ul className="blogLinkWrapper">
-              <li className="rightSideTitle">from the hasura blog</li>
-              {
-                hasuraBlogState.map((item, index) => (
-                  <li key={index}><img src={openNew} alt="Open new window" /><a href={item.linkUrl} target="_blank">{item.linkContent}</a></li>
-                ))
-              }
-            </ul>
           </Sidebar>
         );
       } else {

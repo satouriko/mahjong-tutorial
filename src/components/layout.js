@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from '@emotion/styled';
 import GitHubButton from "react-github-btn";
 import { MDXProvider } from '@mdx-js/react';
@@ -6,16 +6,6 @@ import ThemeProvider from './themeProvider';
 import mdxComponents from './mdxComponents';
 import Sidebar from './sidebar';
 import RightSidebar from './rightSidebar';
-import MarketoForm from './marketoform';
-import CloseIcon from '../globals/icons/Close';
-import OpenedSvg from './images/opened';
-
-import usFlag from "./images/us-flag.svg";
-import chinaFlag from "./images/china-flag.svg";
-import japanFlag from "./images/japan-flag.svg";
-import config from '../../config';
-
-const marketoHost = 'https://page.hasura.io';
 
 const Wrapper = styled('div')`
   /* display: flex;
@@ -116,6 +106,11 @@ const LeftSideBarWidth = styled('div')`
   }
   .mainSideBarTogglePos {
     left: 16px;
+  }
+  @media(max-width: 1388px) {
+    .navigation {
+      display: none;
+    }
   }
   @media(max-width: 1024px) {
     z-index: 100000 !important;
@@ -273,72 +268,13 @@ const StyledToggleSideNavWrapper = styled('div')`
   }
 `;
 
-const translationOptionsFlags = {
-  "en": usFlag,
-  "zh": chinaFlag,
-  "ja": japanFlag,
-}
-
 const Layout = ({ children, location }) => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
   const [isSubNavShow, setIsSubNavShow] = useState(false);
-  const [isLanguageShow, setIsLanguageShow] = useState(false);
-  const [isLanguageShowMobile, setIsLanguageShowMobile] = useState(false);
-  const [isAliId, setIsAliId] = useState(false);
-  const [isLocalSideBarSubscribe, setIsLocalSideBarSubscribe] = useState(false);
-  const [isShowSubscribe, setIsShowSubscribe] = useState(true);
 
   const wrapperRef = useRef(null);
   const mobileWrapperRef = useRef(null);
 
-  const onSubmitCB = () => {
-    if (typeof window !== undefined) {
-      window.localStorage.setItem("sideBarSubscribeConsent", "true");
-    }
-  };
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const searchAliId = searchParams.get("aliId");
-    if (searchAliId || searchAliId === "") {
-      setIsAliId(true);
-    }
-    if (typeof window !== undefined) {
-      if ("localStorage" in window && window.localStorage && "getItem" in window.localStorage) {
-        const sideBarSubscribeConsent = window.localStorage.getItem("sideBarSubscribeConsent");
-        if (sideBarSubscribeConsent) {
-          setIsLocalSideBarSubscribe(true);
-        }
-      }
-    }
-  }, [location.search]);
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, false);
-    document.addEventListener("click", handleMobileClickOutside, false);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, false);
-      document.removeEventListener("click", handleMobileClickOutside, false);
-    };
-  }, []);
-  const handleClickOutside = event => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      var x = document.getElementById("language-dropdown");
-      if (x.className === "languageDropDownWrapper showList") {
-        x.className = "languageDropDownWrapper";
-        setIsLanguageShow(false);
-      }
-    }
-  };
-  const handleMobileClickOutside = event => {
-    if (mobileWrapperRef.current && !mobileWrapperRef.current.contains(event.target)) {
-      var x = document.getElementById("language-dropdown-mobile");
-      if (x.className === "languageDropDownWrapper showList") {
-        x.className = "languageDropDownWrapper";
-        setIsLanguageShowMobile(false);
-      }
-    }
-  };
   return (
     <ThemeProvider location={location}>
       <MDXProvider components={mdxComponents}>
@@ -372,7 +308,7 @@ const Layout = ({ children, location }) => {
             {
               !toggleSideBar ? (
                 <div className="p16">
-                  <Sidebar location={location} sideBarULdecreaseHt = { isShowSubscribe || isAliId }/>
+                  <Sidebar location={location} sideBarULdecreaseHt={false}/>
                 </div>
               ) : null
             }
@@ -380,76 +316,18 @@ const Layout = ({ children, location }) => {
 
                 <LanguageWrapper ref={mobileWrapperRef} className="showMobile">
                   <div className="languageWrapper">
-                    {!!config.language?.code && (
-                      <button className="languageBgn" onClick={()=>setIsLanguageShowMobile(prevShow => !prevShow)}>
-                        <img src={translationOptionsFlags[config.language?.code]} alt={`${config.language?.name} Flag`} />{config.language?.name}
-                      </button>
-                    )}
                     <div className="githubStars">
                       <GitHubButton
-                        href="https://github.com/hasura/learn-graphql"
+                        href="https://github.com/satouriko/mahjong-tutorial"
                         data-size="large"
                         data-show-count="true"
-                        aria-label="Star @hasura on GitHub"
+                        aria-label="Star @satouriko on GitHub"
                       >
                         Star
                       </GitHubButton>
                     </div>
-                    {!!config.language?.code && (
-                      <div id="language-dropdown-mobile" className={"languageDropDownWrapper" + ((isLanguageShowMobile) ? " showList" : "")}>
-                        <ul>
-                          {config.language?.translations.map(translation => (
-                            <li key={translation.code}>
-                              <a href={translation.link}>
-                                <img src={translationOptionsFlags[translation.code]} alt={`${translation.name} Flag`} />
-                                <span>{translation.name}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
                   </div>
                 </LanguageWrapper>
-
-              {
-                !toggleSideBar ? (
-                  <div className="sideBarNewsletterWrapper">
-                    {
-                      !isAliId ? (
-                        <div className="closeBtn"
-                          role="button"
-                          tabIndex="0"
-                          onClick={()=>setIsShowSubscribe(prevIsSubscribe=>!prevIsSubscribe)}
-                        >
-                          <OpenedSvg className={((isShowSubscribe) ? "" : "rotateImg")}/>
-                        </div>
-                      ) : null
-                    }
-
-                  {
-                    isAliId ? (
-                      <div className="desc">{config.newsletter?.ebookAvailable ? "Thank you, please check your email for the e-book" : "Thank you for subscribing to the Hasura Newsletter!"}</div>
-                    ) : (
-                      <>
-                      <div className="desc font_600">{config.newsletter?.ebookAvailable ? "Download tutorial as e-book ⚡️" : "Sign up for Hasura Newsletter"}</div>
-                      {
-                        isShowSubscribe ? (
-                          <MarketoForm
-                            onSubmitCB={onSubmitCB}
-                            formId={config.newsletter?.ebookAvailable ? "1244" : "1079"}
-                            marketoHost={marketoHost}
-                            id="631-HMN-492"
-                            styleClass="marketoFormWrapper sideBarSubscribeWrapper"
-                          />
-                        ) : null
-                      }
-                      </>
-                    )
-                  }
-                  </div>
-                ) : null
-              }
             </div>
           </LeftSideBarWidth>
           <Content className={((toggleSideBar) ? "learnAsideWrapperPos" : "")}>
@@ -460,35 +338,16 @@ const Layout = ({ children, location }) => {
               <RightSideBarWidth>
                   <LanguageWrapper ref={wrapperRef}>
                     <div className="languageWrapper">
-                      {!!config.language?.code && (
-                        <button className="languageBgn" onClick={()=>setIsLanguageShow(prevShow => !prevShow)}>
-                          <img src={translationOptionsFlags[config.language?.code]} alt={`${config.language?.name} Flag`} />{config.language?.name}
-                        </button>
-                      )}
                       <div className="githubStars">
                         <GitHubButton
-                          href="https://github.com/hasura/learn-graphql"
+                          href="https://github.com/satouriko/mahjong-tutorial"
                           data-size="large"
                           data-show-count="true"
-                          aria-label="Star @hasura on GitHub"
+                          aria-label="Star @satouriko on GitHub"
                         >
                           Star
                         </GitHubButton>
                       </div>
-                      {!!config.language?.code && (
-                      <div id="language-dropdown" className={"languageDropDownWrapper" + ((isLanguageShow) ? " showList" : "")}>
-                        <ul>
-                          {config.language?.translations.map(translation => (
-                            <li key={translation.code}>
-                              <a href={translation.link}>
-                                <img src={translationOptionsFlags[translation.code]} alt={`${translation.name} Flag`} />
-                                <span>{translation.name}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      )}
                     </div>
                   </LanguageWrapper>
 

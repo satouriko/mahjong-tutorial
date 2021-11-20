@@ -110,11 +110,9 @@ const SidebarLayout = ({location, sideBarULdecreaseHt}) => (
       }
     `}
     render={({ allMdx }) => {
-      const [isLearn, setIsLearn] = useState(true);
       return (
         <Sidebar>
           <ul className={'sideBarUL' + ((sideBarULdecreaseHt) ? '' : ' sideBarULHeight')}>
-            <li className="active titleNav"><a href="https://hasura.io/learn/"><LeftArrow />Learn</a></li>
             <Tree edges={allMdx.edges} />
 
             {/*config.sidebar.links && config.sidebar.links.length > 0 && <Divider />}

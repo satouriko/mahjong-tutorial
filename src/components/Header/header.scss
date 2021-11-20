@@ -1,5 +1,19 @@
 @import '../hvariable.scss';
 @import '../fonts.scss';
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+
+.title-A {
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-weight: 100;
+
+  &.white {
+    color: #fff;
+  }
+
+  &.black {
+    color: #1b2738;
+  }
+}
 
 .box-shadow-header {
   box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);

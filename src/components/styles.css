@@ -512,8 +512,8 @@ blockquote {
 
 .rightSideBarUL {
   overflow: auto;
-  max-height: calc(100vh - 396px);
-  height: calc(100vh - 396px);
+  max-height: calc(100vh - 396px + 264px);
+  height: calc(100vh - 396px + 264px);
   overflow: auto;
   align-self: flex-start;
   padding-bottom: 16px;
