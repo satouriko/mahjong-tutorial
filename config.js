@@ -25,13 +25,14 @@ const config = {
 	},
 	"sidebar": {
 		"forcedNavOrder": [
-			"/introduction", // add trailing slash if enabled above
-      "/codeblock"
+			"/", // add trailing slash if enabled above
+      "0",
+      "1"
 		],
 		"links": [
 		],
 		"frontline": false,
-		"ignoreIndex": true,
+		"ignoreIndex": false,
 	},
 	"siteMetadata": {
 		"title": "梨子的麻雀生态研究笔记",

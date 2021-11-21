@@ -28,6 +28,8 @@ export default {
   b: (props) => <b className="fontBold" {...props} />,
   code: CodeBlock,
   a: AnchorTag,
+  img: (props) => props.src ? <img {...props} />
+    : <img {...props} src={`https://mahjim.cool2645.workers.dev/${props.alt}`} style={{ maxHeight: '2.25rem', verticalAlign: 'bottom' }} />
   // TODO add `img`
   // TODO add `blockquote`
   // TODO add `ul`
