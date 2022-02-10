@@ -22,7 +22,7 @@ const Header = () => {
             <div id="navBrand" className="navLeft">
               <div className="brand">
                 <Link to="/">
-                  <h1 className={isDark ? 'title-A white' : 'title-A black'}>梨子的麻雀生态研究笔记</h1>
+                  <h1 className={isDark ? 'title-A white' : 'title-A black'}>UZAKU式麻雀学習（中译）</h1>
                 </Link>
               </div>
             </div>

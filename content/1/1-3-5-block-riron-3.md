@@ -1,6 +1,7 @@
 ---
 title: "5Block理论（3）"
 metaTitle: "5Block理论（3）"
+sideComment: "译注：译者在读完本节时雀魂段位升上了雀杰"
 ---
 
 例题A：

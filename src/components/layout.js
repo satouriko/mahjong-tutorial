@@ -134,7 +134,8 @@ const RightSideBarWidth = styled('div')`
   border-left: 1px solid #D5DEE6;
   min-height: calc(100vh - 72px);
   height: calc(100vh - 72px);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 72px;
   right: 0px;
@@ -223,6 +224,10 @@ const LanguageWrapper = styled('div')`
   }
 `;
 
+const SidebarComment = styled('div')`
+  padding: 0 24px 16px 24px;
+`
+
 const MenuNavToggle = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fillRule="evenodd" clipRule="evenodd" d="M3 2.25C2.58579 2.25 2.25 2.58579 2.25 3V21C2.25 21.4142 2.58579 21.75 3 21.75H9H21C21.4142 21.75 21.75 21.4142 21.75 21V3C21.75 2.58579 21.4142 2.25 21 2.25H9H3ZM9.75 3.75V20.25H20.25V3.75H9.75ZM8.25 3.75H3.75V20.25H8.25V3.75Z" fill="#0079BD"/>
@@ -269,7 +274,7 @@ const StyledToggleSideNavWrapper = styled('div')`
   }
 `;
 
-const Layout = ({ children, location }) => {
+const Layout = ({ children, location, rightSidebar }) => {
   const [toggleSideBar, setToggleSideBar] = useState(false);
   const [isSubNavShow, setIsSubNavShow] = useState(false);
 
@@ -328,6 +333,9 @@ const Layout = ({ children, location }) => {
                       </GitHubButton>
                     </div>
                   </div>
+                  <SidebarComment className="paragraph">
+                    {rightSidebar}
+                  </SidebarComment>
                 </LanguageWrapper>
             </div>
           </LeftSideBarWidth>
@@ -351,7 +359,9 @@ const Layout = ({ children, location }) => {
                       </div>
                     </div>
                   </LanguageWrapper>
-
+                <SidebarComment className="paragraph">
+                  {rightSidebar}
+                </SidebarComment>
                 <RightSidebar location={location} />
               </RightSideBarWidth>
             ) : null

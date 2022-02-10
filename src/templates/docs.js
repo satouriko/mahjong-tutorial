@@ -261,8 +261,10 @@ export default class MDXRuntimeTest extends Component {
     // frontmatter canonical takes precedence
     canonicalUrl = mdx.frontmatter.canonicalUrl ? mdx.frontmatter.canonicalUrl : canonicalUrl;
 
+    const sideComment = mdx.frontmatter.sideComment;
+
     return (
-      <Layout {...this.props}>
+      <Layout {...this.props} rightSidebar={sideComment}>
         <Helmet>
           {metaTitle ? <title>{metaTitle}</title> : null}
           {metaTitle ? <meta name="title" content={metaTitle} /> : null}
@@ -314,6 +316,7 @@ export const pageQuery = graphql`
         metaTitle
         metaDescription
         canonicalUrl
+        sideComment
       }
     }
     allMdx {
